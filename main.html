@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aayan Sharma | Digital Creator</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #050505;
+            --text-color: #ffffff;
+            --accent-color: #3b82f6; /* Subtle blue accent */
+            --secondary-text: #888888;
+            --card-bg: #111111;
+            --font-main: 'Inter', sans-serif;
+            --font-display: 'Syne', sans-serif;
+            --padding-container: 8vw;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            cursor: default;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem var(--padding-container);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            mix-blend-mode: difference;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            opacity: 0.7;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 var(--padding-container);
+            position: relative;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 800;
+            line-height: 0.9;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary-text);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            right: var(--padding-container);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        /* --- About Section --- */
+        .section {
+            padding: 8rem var(--padding-container);
+        }
+
+        .section-header {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-header::before {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background-color: var(--text-color);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .about-text p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        .about-stats {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-left: 1px solid #333;
+            padding-left: 3rem;
+        }
+
+        .stat-item {
+            margin-bottom: 2rem;
+        }
+
+        .stat-item h3 {
+            font-size: 2rem;
+            font-family: var(--font-display);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* --- Projects Section --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            padding: 3rem;
+            border-radius: 1px;
+            transition: transform 0.4s ease, background-color 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #222;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 400px;
+        }
+
+        .project-card:hover {
+            background-color: #1a1a1a;
+            transform: translateY(-10px);
+            border-color: #444;
+        }
+
+        .project-number {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            color: #222;
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-card:hover .project-number {
+            color: #333;
+        }
+
+        .project-info h3 {
+            font-size: 2rem;
+            font-family: var(--font-display);
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        .project-info p {
+            color: var(--secondary-text);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .project-link {
+            display: inline-block;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            border-bottom: 1px solid white;
+            padding-bottom: 2px;
+        }
+
+        /* --- Philosophy Section --- */
+        .philosophy {
+            background-color: #0a0a0a;
+            text-align: center;
+        }
+
+        .philosophy-text {
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            font-family: var(--font-display);
+            line-height: 1.4;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .highlight {
+            color: var(--secondary-text);
+        }
+
+        /* --- Contact Section --- */
+        .contact-footer {
+            padding: 6rem var(--padding-container);
+            border-top: 1px solid #222;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .contact-large {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 3rem;
+            transition: color 0.3s;
+        }
+
+        .contact-large:hover {
+            color: #ccc;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        .social-links a::before {
+            content: '↗';
+            display: inline-block;
+            margin-right: 8px;
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover::before {
+            transform: translate(3px, -3px);
+        }
+
+        .copyright {
+            margin-top: 4rem;
+            color: var(--secondary-text);
+            font-size: 0.8rem;
+        }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .about-stats {
+                border-left: none;
+                border-top: 1px solid #333;
+                padding-left: 0;
+                padding-top: 2rem;
+                flex-direction: row;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+
+            .nav-links {
+                display: none; /* Simple hide for mobile, can add hamburger if needed */
+            }
+            
+            .contact-large {
+                font-size: 3.5rem;
+            }
+        }
+        
+        /* Reveal Animation Utility */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Aayan.</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#projects">Work</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1 class="reveal">Digital Creator<br>& Founder</h1>
+        <p class="hero-subtitle reveal" style="transition-delay: 0.2s;">
+            I build apps, tools, and experiences that are fast, fun, and explicitly designed for the GenZ internet era.
+        </p>
+        <div class="scroll-indicator">Scroll Down</div>
+    </header>
+
+    <section id="about" class="section">
+        <h2 class="section-header reveal">About Me</h2>
+        <div class="about-content">
+            <div class="about-text reveal">
+                <p>I’m Aayan Sharma, a 14-year-old digital creator based in Faridabad, Haryana. I specialize in building simple products that genuinely solve problems.</p>
+                <p>My mission is to constantly push myself to learn new things and ship them quickly. Everything I create is driven by curiosity, creativity, and the goal of making something people remember.</p>
+            </div>
+            <div class="about-stats reveal" style="transition-delay: 0.2s;">
+                <div class="stat-item">
+                    <h3>03</h3>
+                    <p>Live Projects</p>
+                </div>
+                <div class="stat-item">
+                    <h3>14</h3>
+                    <p>Years Old</p>
+                </div>
+                <div class="stat-item">
+                    <h3>IN</h3>
+                    <p>Based in India</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <h2 class="section-header reveal">Selected Works</h2>
+        <div class="projects-grid">
+            
+            <a href="https://genzgames.fun" target="_blank" class="project-card reveal">
+                <div class="project-number">01</div>
+                <div class="project-content">
+                    <div class="project-info">
+                        <h3>GenZGames</h3>
+                        <p>My personal playground for building addictive mini-games and experimenting with creative web concepts.</p>
+                    </div>
+                    <span class="project-link">Visit Website</span>
+                </div>
+            </a>
+
+            <a href="https://www.youtube.com/@Futsnaps91" target="_blank" class="project-card reveal" style="transition-delay: 0.1s;">
+                <div class="project-number">02</div>
+                <div class="project-content">
+                    <div class="project-info">
+                        <h3>FUTSnaps91</h3>
+                        <p>A content hub for high-quality football (soccer) content and edits. Built for the community.</p>
+                    </div>
+                    <span class="project-link">Watch on YouTube</span>
+                </div>
+            </a>
+
+            <a href="https://swiftyourlink.vercel.app" target="_blank" class="project-card reveal" style="transition-delay: 0.2s;">
+                <div class="project-number">03</div>
+                <div class="project-content">
+                    <div class="project-info">
+                        <h3>SwiftYourLink</h3>
+                        <p>A smart link-sharing tool designed to make social profiles look cleaner and more powerful.</p>
+                    </div>
+                    <span class="project-link">Visit Tool</span>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <section class="section philosophy">
+        <p class="philosophy-text reveal">
+            "I love working on <span class="highlight">innovative UI/UX ideas</span> and constant self-improvement. Driven by curiosity to build the <span class="highlight">future of GenZ web</span>."
+        </p>
+    </section>
+
+    <section id="contact" class="contact-footer">
+        <a href="mailto:aayanmrfcinvester@gmail.com" class="contact-large reveal">Let's Talk</a>
+        
+        <div class="social-links reveal">
+            <a href="https://github.com/Aayan15728" target="_blank">GitHub</a>
+            <a href="https://x.com/Aayansharm15728" target="_blank">X (Twitter)</a>
+            <a href="mailto:aayanmrfcinvester@gmail.com">Email</a>
+        </div>
+
+        <div class="copyright">
+            &copy; 2024 Aayan Sharma. Faridabad, Haryana.
+        </div>
+    </section>
+
+    <script>
+        // Simple Intersection Observer for reveal animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Hover effect for project cards (tilt)
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.setProperty('--x', `${x}px`);
+                card.style.setProperty('--y', `${y}px`);
+            });
+        });
+    </script>
+</body>
+</html>
